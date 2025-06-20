@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Tim Steinbis - Resume</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      padding: 40px;
       max-width: 800px;
-      margin: auto;
+      margin: 40px auto;
+      padding: 0 20px;
     }
     h1 {
       text-align: center;
@@ -16,29 +16,55 @@
     button {
       display: block;
       margin: 20px auto;
-      padding: 10px 20px;
+      padding: 10px 25px;
       font-size: 16px;
       cursor: pointer;
     }
-    iframe {
+    #resumeObject {
       display: none;
       width: 100%;
-      height: 800px;
+      height: 900px;
       border: none;
       margin-top: 20px;
+    }
+    .download-link {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #0066cc;
+      text-decoration: none;
+    }
+    .download-link:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
   <h1>Tim Steinbis</h1>
-  <button onclick="showResume()">View Resume</button>
 
-  <iframe id="resumeFrame" src="TimSteinbis_Resume_202506.pdf"></iframe>
+  <button onclick="toggleResume()">View Resume</button>
+
+  <a class="download-link" href="TimSteinbis_Resume_202506.pdf" download>
+    📥 Download Resume PDF
+  </a>
+
+  <object
+    id="resumeObject"
+    data="TimSteinbis_Resume_202506.pdf"
+    type="application/pdf"
+  >
+    <p>Your browser does not support PDFs.  
+      <a href="TimSteinbis_Resume_202506.pdf" target="_blank">Download the resume here.</a>
+    </p>
+  </object>
 
   <script>
-    function showResume() {
-      document.getElementById("resumeFrame").style.display = "block";
+    function toggleResume() {
+      const obj = document.getElementById('resumeObject');
+      obj.style.display = obj.style.display === 'block' ? 'none' : 'block';
     }
   </script>
 
