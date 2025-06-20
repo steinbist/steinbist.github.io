@@ -20,13 +20,6 @@
       font-size: 16px;
       cursor: pointer;
     }
-    #resumeObject {
-      display: none;
-      width: 100%;
-      height: 900px;
-      border: none;
-      margin-top: 20px;
-    }
     .download-link {
       display: block;
       text-align: center;
@@ -39,32 +32,39 @@
     .download-link:hover {
       text-decoration: underline;
     }
+    #pdfContainer {
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
 
   <h1>Tim Steinbis</h1>
 
-  <button onclick="toggleResume()">View Resume</button>
+  <button onclick="showResume()">View Resume</button>
 
-  <a class="download-link" href="Tim%Steinbis_Resume_202506.pdf" download>
+  <a class="download-link" href="Tim%20Steinbis_Resume_202506.pdf" download>
     📥 Download Resume PDF
   </a>
 
-  <object
-    id="resumeObject"
-    data="Tim%Steinbis_Resume_202506.pdf"
-    type="application/pdf"
-  >
-    <p>Your browser does not support PDFs.  
-      <a href="Tim%Steinbis_Resume_202506.pdf" target="_blank">Download the resume here.</a>
-    </p>
-  </object>
+  <div id="pdfContainer"></div>
 
   <script>
-    function toggleResume() {
-      const obj = document.getElementById('resumeObject');
-      obj.style.display = obj.style.display === 'block' ? 'none' : 'block';
+    function showResume() {
+      const container = document.getElementById('pdfContainer');
+      if (!container.innerHTML) {
+        container.innerHTML = `
+          <object 
+            data="Tim%20Steinbis_Resume_202506.pdf" 
+            type="application/pdf" 
+            width="100%" 
+            height="900px">
+              <p>Your browser does not support PDFs. 
+                <a href="Tim%20Steinbis_Resume_202506.pdf" target="_blank">Download the resume here.</a>
+              </p>
+          </object>
+        `;
+      }
     }
   </script>
 
