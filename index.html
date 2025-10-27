@@ -59,7 +59,7 @@
 
     <button class="button" onclick="showResume()">View Resume</button>
 
-    <a class="download-link" href="Tim%20Steinbis_Resume_202508-2.pdf" download>
+    <a class="download-link" href="Tim%20Steinbis_Resume_20252210_N.pdf" download>
       📥 Download Resume PDF
     </a>
 
@@ -70,7 +70,7 @@
     function showResume() {
       const container = document.getElementById('pdfContainer');
       if (!container.innerHTML) {
-        const pdfURL = 'Tim%20Steinbis_Resume_202508-2.pdf#toolbar=0&navpanes=0&zoom=100';
+        const pdfURL = 'Tim%20Steinbis_Resume_20252210_N.pdf#toolbar=0&navpanes=0&zoom=100';
         container.innerHTML = `
           <iframe src="${pdfURL}"></iframe>
         `;
