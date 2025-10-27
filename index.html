@@ -67,16 +67,14 @@
   </div>
 
   <script>
-   function showResume() {
-  const container = document.getElementById('pdfContainer');
-  if (!container.innerHTML) {
-    const pdfURL = 'Tim_Steinbis_Resume_20252210_N.pdf#toolbar=0&navpanes=0&zoom=100';
-    container.innerHTML = `
-      <iframe src="${pdfURL}" width="100%" height="800px" style="border:none;"></iframe>
-    `;
-  }
-}
-
+    function showResume() {
+      const container = document.getElementById('pdfContainer');
+      if (!container.innerHTML) {
+        const pdfURL = 'Tim_Steinbis_Resume_20252210_N.pdf#toolbar=0&navpanes=0&zoom=100';
+        container.innerHTML = `
+          <iframe src="${pdfURL}" width="100%" height="800px" style="border:none;"></iframe>
+        `;
+      }
     }
   </script>
 
