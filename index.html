@@ -4,60 +4,23 @@
   <meta charset="UTF-8" />
   <title>Tim Steinbis - Resume</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #e6f0fa; /* faded blue */
-      margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      background-color: white;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      border-radius: 10px;
-    }
-
-    h1 {
-      text-align: center;
-      margin-top: 0;
-    }
-
+    body { font-family: Arial, sans-serif; background-color: #e6f0fa; margin: 0; padding: 0; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; background-color: white; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 10px; }
+    h1 { text-align: center; margin-top: 0; }
     .button, .download-link {
-      display: block;
-      text-align: center;
-      margin: 20px auto;
-      padding: 10px 25px;
-      font-size: 16px;
-      cursor: pointer;
-      background-color: #007acc;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
+      display:block; text-align:center; margin:20px auto; padding:10px 25px; font-size:16px; cursor:pointer;
+      background-color:#007acc; color:white; border:none; border-radius:5px; text-decoration:none;
     }
-
-    .button:hover, .download-link:hover {
-      background-color: #005f99;
-    }
-
-    iframe {
-      display: block;
-      width: 100%;
-      height: 1000px;
-      border: none;
-      margin-top: 30px;
-    }
+    .button:hover, .download-link:hover { background-color:#005f99; }
+    iframe { display:block; width:100%; height:1000px; border:none; margin-top:30px; }
   </style>
 </head>
 <body>
-
   <div class="container">
     <h1>Tim Steinbis</h1>
 
-    <button class="button" onclick="showResume()">View Resume</button>
+    <!-- No inline onclick -->
+    <button id="viewResumeBtn" class="button" type="button">View Resume</button>
 
     <a class="download-link" href="Tim_Steinbis_Resume_20252210_N.pdf" download>
       📥 Download Resume PDF
@@ -67,16 +30,26 @@
   </div>
 
   <script>
-    function showResume() {
-      const container = document.getElementById('pdfContainer');
-      if (!container.innerHTML) {
-        const pdfURL = 'Tim_Steinbis_Resume_20252210_N.pdf#toolbar=0&navpanes=0&zoom=100';
-        container.innerHTML = `
-          <iframe src="${pdfURL}" width="100%" height="800px" style="border:none;"></iframe>
-        `;
-      }
-    }
-  </script>
+    (function () {
+      const PDF_FILE = "Tim_Steinbis_Resume_20252210_N.pdf";
+      const PDF_URL  = `${encodeURI(PDF_FILE)}#toolbar=0&navpanes=0&zoom=100`;
 
+      function showResume() {
+        const container = document.getElementById("pdfContainer");
+        if (!container) return;
+
+        // Only insert once
+        if (!container.innerHTML.trim()) {
+          container.innerHTML = `<iframe src="${PDF_URL}" title="Tim Steinbis Resume"></iframe>`;
+        }
+      }
+
+      // Wire up after DOM is ready
+      document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.getElementById("viewResumeBtn");
+        if (btn) btn.addEventListener("click", showResume);
+      });
+    })();
+  </script>
 </body>
 </html>
